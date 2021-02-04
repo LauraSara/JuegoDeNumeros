@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <title>Document</title>
+  <style>
+    body{
+      background-size: 100%;
+      height: 570px;
+      background-image: linear-gradient( 179.2deg,  rgba(255,221,24,1) 16.1%, rgba(241,102,36,1) 86.8% );
+    }
+    *{
+      margin: 12px;
+      text-align: center;
+      
+    }
+    .alto, .bajo{
+      background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(226,37,37,1) 0%, rgba(211,49,49,1) 82.8% );
+      padding: 15px;
+      color: white;
+      border-radius: 50px;
+    }
+    .ganador{
+      background-image: linear-gradient( 180deg,  rgba(155,254,23,1) 45.5%, rgba(36,243,8,1) 97.9% );
+      padding: 15px;
+      color: white;
+      border-radius: 50px;
+    }
+    button{
+      background-color: khaki;
+      padding: 10px;
+      border-radius: 10px;
+      display: block;
+      text-align: center;
+      margin: auto;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+    .bueno{
+      font-size: 60px;
+      margin: 10px;
+      color:lime;
+    }
+    .malo {
+      font-size: 60px;
+      margin: 10px;
+      color: red;
+    }
+  </style>
+</head>
+<body>  
+  <div class="container">
+    <h1>Bienvenido al Gran Juego de Numeros</h1>    
+
+    <form action='/jugar' method="post">
+      <input type="number" name="numNuevo" min="1" max="100" autofocus>
+      <button type="submit">Submit</button>
+      
+      <h4 class="tuNumero">El numero que escribiste fue: <%= numNuevo %></h4>
+      
+      <% if (numNuevo == numAleatorio) { %>
+        <h4 class="ganador">  Ganaste!</h4>
+        <ion-icon class="bueno" name="checkmark-circle-outline"></ion-icon>
+        <% } else if (numNuevo > numAleatorio) { %>
+          <h4 class="alto">Muy Alto</h4>
+          <ion-icon class="malo" name="close-circle-outline"></ion-icon>
+          <% } else if (numNuevo < numAleatorio && numNuevo !== undefined) { %>
+            <h4 class="bajo">Muy Bajo</h4>
+            <ion-icon class="malo" name="close-circle-outline"></ion-icon>
+            <% } %>
+              
+    </form>
+
+    <form action='/restart' method="GET">
+        <button type="submit">Reiniciar</button>
+    </form>
+  </div>
+</body>
+</html>
